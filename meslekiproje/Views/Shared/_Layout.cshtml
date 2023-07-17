@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/sidebar-nav.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="~/Content/Css/css-chart.css" rel="stylesheet" />
+    <link href="~/Content/Css/animate.css" rel="stylesheet" />
+    <link href="~/Content/Css/style.css" rel="stylesheet" />
+    <link href="~/Content/Css/blue.css" rel="stylesheet" />
+    <link href="~/Content/Css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Content/Css/sweetalert2.min.css" rel="stylesheet" />
+
+    <style>
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+                @*<div class="top-left-part">       
+                @*<ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+                </ul>*@
+                <a class="logo"  >
+                    <span class="hidden-xs">
+                        <img src="~/Content/Img/onlinelogomaker-120222-2159-7353.png" width="350" />
+                    </span>
+                </a>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="~/Content/Img/user.png" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"> AAAAAAA </b></a>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+                            <li><a href="#"><i class="fa fa-power-off"></i>Çıkış Yap</a></li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- Left navbar-header -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <!-- input-group -->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li class="user-pro">
+                        <a href="#" class="waves-effect"><img src="~/Content/Img/user.png" alt="user-img" class="img-circle"> <span class="hide-menu"> AAAAAAA<span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level">  
+                            <li><a href="#"><i class="fa fa-power-off"></i> Çıkış Yap</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-small-cap m-t-10">--- Menüler</li>
+                    <li>
+                        <a href="index.html" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> İstatistikler</a>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i>Kategoriler<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Kategori")">Listele</a></li>
+                            <li><a id="ktgEkle" href="javascript:void(0)">Ekle</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i>Yazarlar<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Yazar")">Listele</a></li>
+                            <li><a id="yazarEkle" href="javascript:void(0)">Ekle</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i>Kitaplar<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Kitap")">Listele</a></li>
+                            <li><a href="@Url.Action("Ekle","Kitap")">Ekle</a></li>
+                            <li><a href="@Url.Action("VerilenKitap","OduncKitap")">Ödünç Alınan Kitaplar</a></li>
+                            <li><a href="@Url.Action("TeslimEdilenKitap","OduncKitap")">Teslim Edilen Kitaplar</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i>Üyeler<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Uye")">Listele</a></li>
+                            <li><a href="@Url.Action("Ekle","Uye")">Ekle</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Uyelik")" class="waves-effect "><i class="linea-icon linea-basic fa-fw" data-icon="v"></i>Üyelik İşlemleri</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Left navbar-header end -->
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title"> @ViewBag.Title </h4>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row white-box">
+                    @RenderBody()
+                </div>
+                <!-- /.container-fluid -->
+                <footer class="footer text-center">&copy; Copyright 2022, Tüm Hakları Saklıdır </footer>
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+        <script src="~/Script/jquery.min.js"></script>
+        <script src="~/Script/bootstrap.min.js"></script>
+        <script src="~/Script/sidebar-nav.min.js"></script>
+        <script src="~/Script/jquery.slimscroll.js"></script>
+        <script src="~/Script/waves.js"></script>
+        <script src="~/Script/jquery.flot.js"></script>
+        <script src="~/Script/jquery.sparkline.min.js"></script>
+        <script src="~/Script/jquery.easypiechart.min.js"></script>
+        <script src="~/Script/easy-pie-chart.init.js"></script>
+        <script src="~/Script/custom.js"></script>
+        <script src="~/Script/dashboard2.js"></script>
+        <script src="~/Script/jQuery.style.switcher.js"></script>
+        <script src="~/Script/jquery.dataTables.min.js"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                // Setup - add a text input to each footer cell
+                $('#example tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                });
+
+                // DataTable
+                var table = $('#example').DataTable({
+                    initComplete: function () {
+                        // Apply the search
+                        this.api()
+                            .columns()
+                            .every(function () {
+                                var that = this;
+
+                                $('input', this.footer()).on('keyup change clear', function () {
+                                    if (that.search() !== this.value) {
+                                        that.search(this.value).draw();
+                                    }
+                                });
+                            });
+                    },
+                });
+            });
+        </script>
+
+        <script src="~/Script/sweetalert2.min.js"></script>
+        <script src="~/Script/Main.js"></script>
+
+    </div></body>
+</html>
